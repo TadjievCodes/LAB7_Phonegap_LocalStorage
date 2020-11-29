@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+        
+        <title>Lab 7 Tadjiev 971040</title>
+        <style>
+             body {
+                background-color: black;
+                font-family: sans-serif;
+             }
+             main {
+                 width: 95%;
+                 margin: auto;
+                 background-color: white;
+                 padding: 2%;
+                 text-align: center;
+             }
+             button {
+                background-color: gray;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            }
+            #print {
+                margin: 2%;
+                border: 1px solid black;
+                padding: 1%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+        <h1>LOCAL STORAGE AND DATABASE</h1>
+
+        <div>
+            <h2>What is your name? </h2>
+            <input type="text" id="name"> 
+            <h2>Which country do you belong?  </h2>
+            <input type="text" id="country">
+        </div>
+        <br><br>
+        <div>
+            <button id="save-input-local-button">SAVE TO LOCAL STORAGE</button>
+            <button id="save-input-db-button">SAVE TO DATABASE</button>
+        </div>
+
+        <div>
+            <button id="load-input-local-button">LOAD DATA FROM LOCAL STORAGE</button>
+            <button id="load-input-db-button">LOAD DATA FROM DATABASE</button>
+        </div>
+        <br>
+        <br>
+        <div id="print"></div>
+        <div id="print2"></div>
+
+        <script src="cordova.js"></script>
+        <script src="js/index.js"></script>
+        </main>
+    </body>
+</html>
