@@ -18,29 +18,31 @@ function onDeviceReady() {
     db = window.openDatabase('myExampleDB', '1.0', 'ExampleDB', 2 * 1024 * 1024);
 }
 
+
 function saveToLocalStorage() {
-    var name = document.getElementById("name").value;
-    var country = document.getElementById("country").value;
+    var firstName = document.getElementById("firstName").value;
+    var lastfirstName = document.getElementById("lastfirstName").value;
 
     var donestorage = window.localStorage;
-    donestorage.setItem('name', name);
-    donestorage.setItem('country', country);
+    donestorage.setItem('firstName', firstName);
+    donestorage.setItem('lastfirstName', lastfirstName);
     
 }
 
+
 function saveToDBStorage() {
-    var dname = document.getElementById("name").value;
-    var dcountry = document.getElementById("country").value;
+    var dfirstName = document.getElementById("firstName").value;
+    var dlastfirstName = document.getElementById("lastfirstName").value;
 
     db.transaction(function (tx) { 
-        tx.executeSql('CREATE TABLE IF NOT EXISTS Users2 (name, country)', 
+        tx.executeSql('CREATE TABLE IF NOT EXISTS Users2 (firstName, lastfirstName)', 
          
             null,
             function(tx,error){
                 console.error("Error: " + error.message);
             }
         ); 
-        tx.executeSql(`INSERT INTO Users2 (name, country) VALUES ("${dname}", "${dcountry}")`,
+        tx.executeSql(`INSERT INTO Users2 (firstName, lastfirstName) VALUES ("${dfirstName}", "${dlastfirstName}")`,
           
             null,
             function(tx,error){
@@ -50,10 +52,11 @@ function saveToDBStorage() {
      }); 
 }
 
+
 function showLocalStorageAlert() {
     var donestorage = window.localStorage;
-    var data = donestorage.getItem('name') + " belongs to " +
-    donestorage.getItem('country')  ;
+    var data = donestorage.getItem('firstName') + " belongs to " +
+    donestorage.getItem('lastfirstName')  ;
 
     navigator.notification.alert(
         data, 
@@ -61,9 +64,10 @@ function showLocalStorageAlert() {
         'Loaded From Local Storage!',  
         'Done'               
     );
-    // document.getElementById("name").value = "";
-    // document.getElementById("country").value = "";
+    // document.getElementById("firstName").value = "";
+    // document.getElementById("lastfirstName").value = "";
 }
+
 
 function showDatabaseAlert() {
     db.transaction(function (tx) { 
@@ -74,8 +78,8 @@ function showDatabaseAlert() {
        
             for (i = 0; i < len; i++) { 
                 data += 'Entry #' + (i + 1) + '\n';
-                data += results.rows.item(i).name + " belongs to " + '\n'; 
-                data += results.rows.item(i).country + '\n'; 
+                data += results.rows.item(i).firstName + " belongs to " + '\n'; 
+                data += results.rows.item(i).lastfirstName + '\n'; 
                 data += '</br>';
             }   
     document.getElementById("print").innerHTML = data;
@@ -85,6 +89,6 @@ function showDatabaseAlert() {
         }); 
      });
 
-    //  document.getElementById("name").value = "";
-    //  document.getElementById("country").value = "";
+    //  document.getElementById("firstName").value = "";
+    //  document.getElementById("lastfirstName").value = "";
 }
