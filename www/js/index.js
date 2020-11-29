@@ -21,28 +21,28 @@ function onDeviceReady() {
 
 function saveToLocalStorage() {
     var firstName = document.getElementById("firstName").value;
-    var lastfirstName = document.getElementById("lastfirstName").value;
+    var lastName = document.getElementById("lastName").value;
 
     var donestorage = window.localStorage;
     donestorage.setItem('firstName', firstName);
-    donestorage.setItem('lastfirstName', lastfirstName);
+    donestorage.setItem('lastName', lastName);
     
 }
 
 
 function saveToDBStorage() {
     var dfirstName = document.getElementById("firstName").value;
-    var dlastfirstName = document.getElementById("lastfirstName").value;
+    var dlastName = document.getElementById("lastName").value; 
 
     db.transaction(function (tx) { 
-        tx.executeSql('CREATE TABLE IF NOT EXISTS Users2 (firstName, lastfirstName)', 
+        tx.executeSql('CREATE TABLE IF NOT EXISTS Users2 (firstName, lastName)', 
          
             null,
             function(tx,error){
                 console.error("Error: " + error.message);
             }
         ); 
-        tx.executeSql(`INSERT INTO Users2 (firstName, lastfirstName) VALUES ("${dfirstName}", "${dlastfirstName}")`,
+        tx.executeSql(`INSERT INTO Users2 (firstName, lastName) VALUES ("${dfirstName}", "${dlastName}")`,
           
             null,
             function(tx,error){
@@ -56,7 +56,7 @@ function saveToDBStorage() {
 function showLocalStorageAlert() {
     var donestorage = window.localStorage;
     var data = donestorage.getItem('firstName') + " belongs to " +
-    donestorage.getItem('lastfirstName')  ;
+    donestorage.getItem('lastName')  ;
 
     navigator.notification.alert(
         data, 
@@ -65,7 +65,7 @@ function showLocalStorageAlert() {
         'Done'               
     );
     // document.getElementById("firstName").value = "";
-    // document.getElementById("lastfirstName").value = "";
+    // document.getElementById("lastName").value = "";
 }
 
 
@@ -79,7 +79,7 @@ function showDatabaseAlert() {
             for (i = 0; i < len; i++) { 
                 data += 'Entry #' + (i + 1) + '\n';
                 data += results.rows.item(i).firstName + " belongs to " + '\n'; 
-                data += results.rows.item(i).lastfirstName + '\n'; 
+                data += results.rows.item(i).lastName + '\n'; 
                 data += '</br>';
             }   
     document.getElementById("print").innerHTML = data;
@@ -90,5 +90,5 @@ function showDatabaseAlert() {
      });
 
     //  document.getElementById("firstName").value = "";
-    //  document.getElementById("lastfirstName").value = "";
+    //  document.getElementById("lastName").value = "";
 }
